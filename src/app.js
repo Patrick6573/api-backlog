@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import filmeRoutes from "../src/routes/filmeRoutes.js";
 
 
 //constante que importa as rotas

@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
         filme.BuscarTodosOsFilmes(req,res);
     } catch(err){
         res.status(500).json({error: err.message});
-    }
+    };
 
 
 })
