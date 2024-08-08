@@ -7,7 +7,7 @@ import filmeRoutes from "../src/routes/filmeRoutes.js";
 const app=express();
 
 
-app.use(bodyParser.jason());
+app.use(bodyParser.json());
 
 app.use('/',filmeRoutes);
 
