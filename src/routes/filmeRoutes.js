@@ -12,6 +12,18 @@ router.get('/', (req, res) => {
         res.status(500).json({error: err.message});
     }
 });
+router.get('/:id', (req, res) =>{
+
+    try {
+        filme.BuscarFilmePorId(req, res);
+    } catch (err) {
+        res.status(500).json({error: err.message});
+    }
+
+
+
+
+})
 router.post('/', (req, res) => {
     try{
         filme.CadastrarFilmes(req,res);
@@ -19,5 +31,6 @@ router.post('/', (req, res) => {
         res.status(500).json({error: err.message});
     }
 });
+
 
 export default router;
