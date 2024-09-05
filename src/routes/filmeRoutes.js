@@ -20,14 +20,18 @@ router.get('/:id', (req, res) =>{
         res.status(500).json({error: err.message});
     }
 
-
-
-
 })
 router.post('/', (req, res) => {
     try{
         filme.CadastrarFilmes(req,res);
     } catch(err){
+        res.status(500).json({error: err.message});
+    }
+});
+router.put('/:id', (req, res) =>{
+    try {
+        filme.AtualizarFilme(req,res);
+    } catch (err) {
         res.status(500).json({error: err.message});
     }
 });
