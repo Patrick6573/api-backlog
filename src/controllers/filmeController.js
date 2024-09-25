@@ -4,7 +4,7 @@ export default class Filmes {
     async BuscarTodosOsFilmes(req, res){
         try{
             const filmes = await filmeModel.findAll();
-            return res.json(filmes);
+            res.json(filmes);
         }
         catch(err){
             return res.status(500).json({erro: err.menssage});
@@ -17,6 +17,20 @@ export default class Filmes {
                 return res.status(404).json({erro: "Filme não Encontrado"});
             }
             return res.json(filmeEncontrado);
+
+        } catch (err) {
+            res.status(500).json({error: err.message});
+        }
+    }
+    async PesquisarFilmeTitulo(req, res){
+        try {
+            const filmeEncontrado = await filmeModel.findOne({
+                where : {titulo: req.body.titulo}
+            });
+            if(!filmeEncontrado){
+                return res.status(404).json({erro: "Filme não Encontrado"});
+            }
+            return res.json({genero: filmeEncontrado.genero , ano: filmeEncontrado.ano});
 
         } catch (err) {
             res.status(500).json({error: err.message});
@@ -48,8 +62,20 @@ export default class Filmes {
             res.status(500).json({error: err.message});
         }
     }
-
-
-
-
+    async DeletarFilme(req, res){
+        try {
+            const filmeDeletado = await filmeModel.destroy(
+            {
+                where: {id: req.params.id}
+            });
+            if(!filmeDeletado){
+                return res.status(404).json({erro: 'Filme não encontrado!'});   
+            }        
+                return res.json({messagem: 'Filme deletado com sucesso!'});     
+            
+        } catch (err) {
+           res.status(500).json({error: err.message});           
+        }
+        
+    }
 }
